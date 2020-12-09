@@ -1,0 +1,18 @@
+.background{
+    min-height: 100vh;
+    background-image: url(https://avatanplus.com/files/resources/original/572a6e7b31ba91547dbf9144.jpg);
+}
+
+.textContainer{
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.text{
+    margin: 0;
+    font-weight: 700;
+    font-size: 40px;
+}

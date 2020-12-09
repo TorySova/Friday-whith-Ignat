@@ -1,0 +1,19 @@
+.superInput {
+    height: 20px;
+    margin: 10px;
+    border-bottom: 2px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    outline: none;
+}
+
+.errorInput {
+    height: 20px;
+    border-bottom: 2px solid rgb(0, 0, 0);
+    background: rgb(252, 39, 39);
+    border-radius: 5px;
+    outline: none;
+}
+
+.error {
+    color: rgb(252, 39, 39);
+}

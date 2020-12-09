@@ -1,0 +1,11 @@
+.default {
+    border: 1px solid black;
+    outline: none;
+    border-radius: 10px;
+    padding: 3px 10px;
+    margin-right: 5px;
+}
+
+.red {
+    background: rgb(252, 39, 39);
+}
