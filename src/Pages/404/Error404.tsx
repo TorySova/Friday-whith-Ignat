@@ -6,12 +6,10 @@ export const Error404 = () => {
         <div className={s.background}>
             <div className={s.textContainer}>
                 <div className={s.text}>
-                    Ой!
+                    Ой!<br />
                     Такой страницы не существует...
                 </div>
-
             </div>
-
         </div>
     )
 }
