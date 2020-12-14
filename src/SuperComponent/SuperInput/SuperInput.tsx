@@ -16,7 +16,7 @@ type SuperInputPropsType = DefaultInputPropsType & { // и + ещё пропсы
 
 const SuperInput: React.FC<SuperInputPropsType> = (
     {
-        type, // достаём и игнорируем чтоб нельзя было задать другой тип инпута
+        // достаём и игнорируем чтоб нельзя было задать другой тип инпута
         onChange, onChangeText,
         onKeyPress, onEnter,
         error,
