@@ -14,13 +14,12 @@ export const CheckIn = () => {
 
     const addNewUser = () => {
         if (password === confirmPassword) {
-            //вставить крутилку ?
             setMail("");
             setPassword("");
             setConfirmPassword("");
-            //убрать крутилку ?
+            alert(mail);
         } else {
-
+            alert("Пароли не совпадают!")
         }
 
     }
@@ -36,7 +35,6 @@ export const CheckIn = () => {
             <div>
                 <p>подтвердите пароль:</p><SuperInput type={"password"} placeholder={"confirm the password"} value={confirmPassword} onChangeText={setConfirmPassword}/>
             </div>
-            {/*<SuperButton/>*/}
             <button onClick={addNewUser}>Зарегистрироваться</button>
         </div>
     )
