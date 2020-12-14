@@ -2,16 +2,16 @@ import axios from "axios";
 
 const instance = axios.create({
     baseURL: "http://localhost:7542/2.0/",
-    //https://neko-back.herokuapp.com/2.0
+    //baseURL: "https://neko-back.herokuapp.com/2.0/"
 });
 
-type regNewUserDataType = {
+export type regNewUserDataType = {
     email: string
     password: string
 }
 
 type ResponseType = {
-    error?: string
+    status: number
 }
 
 export const registerAPI = {
