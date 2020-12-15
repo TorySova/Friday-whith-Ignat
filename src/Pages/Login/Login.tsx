@@ -10,8 +10,8 @@ export const Login = () => {
     const error = useSelector<AppStoreType, string>(state => state.login.error)
     const dispatch = useDispatch()
 
-    const [email, setEmail] = useState<string>('toryssova@gmail.com')
-    const [password, setPassword] = useState<string>('20121715z')
+    const [email, setEmail] = useState<string>('')
+    const [password, setPassword] = useState<string>('')
     const [rememberMe, setRememderMe] = useState(false)
 
     const setEmailCallback = useCallback(

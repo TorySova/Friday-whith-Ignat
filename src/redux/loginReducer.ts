@@ -4,7 +4,7 @@ import { Dispatch } from 'redux'
 import { LoginAPI } from '../api/login-api';
 
 export type LoginStateType = {
-    isLoggedIn: boolean;   
+    isLoggedIn: boolean;
     error: string
 }
 
@@ -41,26 +41,24 @@ export const setIsLoggedIn = (isLoggedIn: boolean) => ({
 export const setError = (error: string) => ({
     type: 'login/SET_ERROR',
     error
-} as const );
+} as const);
 
 export const loginTC = (data: LoginParamsType) => (dispatch: Dispatch<LoginActionsType>) => {
-    
+
     return LoginAPI.login(data)
-    .then(res => {
-        debugger
-        if(res.data.error){
-            dispatch(setError(res.data.error))
-        } else {
-            dispatch(setProfileAC(res.data))
-            dispatch(setIsLoggedIn(true))
-        }
-    })
-    .catch((e) => {         
-        const error = e.res ? e.res.data.error : (e.message + ', more details in the console')
-        dispatch(setError(error))
-        console.log('Error:', {...e});
-             
-    })
+        .then(res => {
+            debugger
+            if (res.data.error) {
+                dispatch(setError(res.data.error))
+            } else {
+                dispatch(setProfileAC(res.data))
+                dispatch(setIsLoggedIn(true))
+            }
+        })
+        .catch((e) => {
+            dispatch(setError(e.response.data.error + ' more details in the console'))
+            console.log('Error:', { ...e });
+        })
 }
 
 
