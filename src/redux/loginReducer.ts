@@ -15,7 +15,7 @@ export const loginInitState: LoginStateType = {
 
 export const loginReducer = (state = loginInitState, action: LoginActionsType): LoginStateType => {
     switch (action.type) {
-        case "login/SET_LOADING": {
+        case "login/SET_IS_LOGGED_IN": {
             return {
                 ...state,
                 isLoggedIn: action.isLoggedIn,
@@ -34,7 +34,7 @@ export const loginReducer = (state = loginInitState, action: LoginActionsType): 
 export type LoginActionsType = ReturnType<typeof setIsLoggedIn> | ReturnType<typeof setError> | ReturnType<typeof setProfileAC>
 
 export const setIsLoggedIn = (isLoggedIn: boolean) => ({
-    type: 'login/SET_LOADING',
+    type: 'login/SET_IS_LOGGED_IN',
     isLoggedIn,
 } as const);
 
@@ -47,7 +47,6 @@ export const loginTC = (data: LoginParamsType) => (dispatch: Dispatch<LoginActio
 
     return LoginAPI.login(data)
         .then(res => {
-            debugger
             if (res.data.error) {
                 dispatch(setError(res.data.error))
             } else {
