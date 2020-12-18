@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { loginTC } from '../../redux/loginReducer'
 import { AppStoreType } from '../../redux/store'
+import s from './Login.module.css'
 
 export const Login = () => {
 
@@ -26,9 +27,9 @@ export const Login = () => {
         (e: ChangeEvent<HTMLInputElement>) => setRememderMe (e.currentTarget.checked),
         [setRememderMe ]
     );
-    const loggInCallback = () => {
+    const loggInCallback = useCallback(() => {
         dispatch(loginTC({email, password, rememberMe}))
-    }
+    }, [email, password, rememberMe, dispatch])
        
     if(isLoggedIn){
         return <Redirect to={'/profile'}/>
@@ -36,7 +37,7 @@ export const Login = () => {
        
     return (
         <div>
-            {error ? error : ''}
+            {error ? <div className={s.error}>{error}</div> : ''}
             <p><input type={'text'} placeholder={'email'} value={email} onChange={setEmailCallback}/></p>
             <p><input type={'password'} placeholder={'password'} value={password} onChange={setPassCallback}/></p>
             <p><input type={'checkbox'} checked={rememberMe} onChange={setRememberCallback}/> remember me</p>
