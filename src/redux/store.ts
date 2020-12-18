@@ -3,12 +3,13 @@ import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunkMiddleware from 'redux-thunk';
 import {profileReducer} from "./profileReducer";
 import { registerReducer } from "./registerReducer";
-
+import {forgotReducer} from "./forgotReducer";
 
 const reducers = combineReducers({
     profile: profileReducer,
     login: loginReducer,
     register: registerReducer,
+    forgot: forgotReducer,
 });
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));
