@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { loginTC } from '../../redux/loginReducer'
 import { AppStoreType } from '../../redux/store'
+import SuperInput from '../../SuperComponent/SuperInput/SuperInput'
 import s from './Login.module.css'
 
 export const Login = () => {
@@ -38,8 +39,8 @@ export const Login = () => {
     return (
         <div>
             {error ? <div className={s.error}>{error}</div> : ''}
-            <p><input type={'text'} placeholder={'email'} value={email} onChange={setEmailCallback}/></p>
-            <p><input type={'password'} placeholder={'password'} value={password} onChange={setPassCallback}/></p>
+            <p>введите почту:</p><SuperInput type={'text'} placeholder={'email'} value={email} onChange={setEmailCallback}/>
+            <p>введите пароль:</p><SuperInput type={'password'} placeholder={'password'} value={password} onChange={setPassCallback}/>
             <p><input type={'checkbox'} checked={rememberMe} onChange={setRememberCallback}/> remember me</p>
             <p><button onClick={loggInCallback}>login</button></p>
         </div>
