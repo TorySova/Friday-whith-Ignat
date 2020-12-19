@@ -51,7 +51,10 @@ export const setError = (error: string) => ({type: "setPassword/SET_ERROR", erro
 
 export const setPasswordTC = (token: string, password: string, pass2: string) => async (dispatch: Dispatch<SetPassActionsType>) => {
     dispatch(setLoading(true));
-    if (password !== pass2) dispatch(setError("Passwords don't match!"))
+    if (password !== pass2) {
+        dispatch(setError("Passwords don't match!"))
+        dispatch(setLoading(false))
+    }
     else {
         return SetPassAPI.setPass(token, password)
             .then (() => {
