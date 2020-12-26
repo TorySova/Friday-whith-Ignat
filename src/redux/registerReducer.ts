@@ -1,4 +1,4 @@
-import {registerAPI, regNewUserDataType} from "../api/api-register";
+import {registerAPI, regNewUserDataType} from "../api/register-api";
 
 const initialState = {
     isRegistered: false

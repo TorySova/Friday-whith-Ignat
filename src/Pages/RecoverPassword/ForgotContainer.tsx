@@ -8,7 +8,6 @@ import Preloader from "../../common/Preloader";
 const ForgotContainer = React.memo(() => {
     const [email, setEmail] = useState<string>("");
     const error = useSelector((store: AppStoreType) => store.forgot.error);
-    debugger
     const dispatch = useDispatch();
     const forgotCallback = useCallback(
         () => dispatch(forgotTC(email)),
