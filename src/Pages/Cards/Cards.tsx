@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Table } from "../../common/Table/Table";
-import { createCardThunk, getCardsThunk, updateCardThunk } from "../../redux/cardsReducer";
+import { createCardThunk, deleteCardThunk, getCardsThunk, updateCardThunk } from "../../redux/cardsReducer";
 import { AppStoreType } from "../../redux/store";
 import { PATH } from "../../Routes";
 
@@ -24,7 +24,6 @@ export const Cards = () => {
 
     const isLoggedIn = useSelector<AppStoreType, boolean>(state => state.login.isLoggedIn);
     const cardsData = useSelector((state: AppStoreType) => getCardsData(state));
-
     const isLinkToCards = false;
 
     const getCards = () => {
@@ -36,8 +35,8 @@ export const Cards = () => {
     const updateCard = (cardId: string) => {
         dispatch(updateCardThunk(cardId))
     }
-    const deleteCard = () => {
-
+    const deleteCard = (cardId: string) => {
+        dispatch(deleteCardThunk(cardId))
     }
 
     if (!isLoggedIn) {
@@ -47,8 +46,8 @@ export const Cards = () => {
     return (
         <div>
             {/* сделать дизейбл кнопок */}
-            <button onClick={getCards}>Get Cards</button>
-            <button onClick={addCard}>Add Card</button>
+            <button onClick={getCards}>GET CARDS</button>
+            <button onClick={addCard}>ADD CARD</button>
             <Table
                 header={cardsData[0]}
                 data={cardsData}

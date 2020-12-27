@@ -7,8 +7,8 @@ const instance = axios.create({
 });
 
 export const PacksAPI = {
-    getPacks() {
-        return instance.get('cards/pack').then(res => res.data)
+    getPacks(user_id: string, page: number, pageCount: number) {
+        return instance.get(`cards/pack/?`+ (user_id != null ? `user_id=${user_id}` : ``) + `&page=${page}` + `&pageCount=${pageCount}`).then(res => res.data)
     },
     createPack() {
         return instance.post('cards/pack', {
@@ -30,20 +30,4 @@ export const PacksAPI = {
         return instance.delete(`cards/pack?id=${id}`)
             .then(res => res.data)
     }
-}
-
-//types
-export type CardPacksType = {
-    _id: string
-    user_id?: string
-    name: string
-    path?: string
-    cardsCount: number
-    grade?: number
-    shots?: number
-    rating?: number
-    type?: string
-    created?: string
-    updated: string
-    __v?: number
 }

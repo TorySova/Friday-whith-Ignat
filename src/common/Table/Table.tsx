@@ -1,75 +1,54 @@
 import React from "react";
 import { NavLink, useHistory } from "react-router-dom";
-import {PATH} from "../../Routes";
-
-
-type PropsType = {
-    header: any
-    data: any
-    //update: (id: string) => void
-    update: any
-    //delete: (id: string) => void
-    delete: any
-    isLinkToCards: boolean
-    //link: (id: string) => void
-    link?: any
-}
+import { PATH } from "../../Routes";
 
 export const Table: React.FC<PropsType> = (props: PropsType) => {
-    const showBtns = true;
-    //const packsTableData = useSelector((state: AppStoreType) => getPacksData(state));
-    //const packId = "5fe66bf32f93dc434098cdd7"
-    
-    //callbacks
-    const onClickUpdatePackCallback = (id: string) => {
+
+    //callbacks:
+    const UpdateCallback = (id: string) => {
         if (props.update) {
             props.update(id)
         }
     }
-    const onClickDeletePackCallback = (id: string) => {
+    const DeleteCallback = (id: string) => {
         if (props.delete) {
             props.delete(id)
         }
     }
-    const onClickPackIdCallback = (packId: string) => {
+    const PackIdCallback = (packId: string) => {
         if (props.link) {
             props.link(packId)
         }
 
     }
-    // let history = useHistory();
-    // const handleClick = () => {
-    //     history.push(`/cards/${packId}`);
-    //     //history.push("/cards/"+packId);
-    //   }
 
-    if (!props.header && !props.data) {
-        return <div>no data received from the server</div>
+    if (!props.header) {
+        return <div>At the moment you don't have any cards. If you are a pack owner - press "ADD CARD" or choose another pack</div>
     }
     return (
         <table>
             <thead>
                 <tr>
                     {Object.keys(props.header).map(key => <th>{key.toUpperCase()}</th>)}
-                    {showBtns && <th>Update & Delete</th>}
+                    {props.data && <th>BUTTONS</th>}
                 </tr>
             </thead>
             <tbody>
-
-                {props.data.map((item: any) => (
-                    <tr key={item._id}>
-                        {Object.values(item).map((value: any) => <td>{value}</td>)}
+                {props.data.map((el: any) => (
+                    <tr key={el._id}>
+                        {Object.values(el).map((data: any) => <td>{data}</td>)}
                         <td>
-                            {showBtns
+                            {!!props.data
                                 && <>
                                     <button
-                                        onClick={() => onClickUpdatePackCallback(item.id)}>Update
+                                        onClick={() => UpdateCallback(el.id)}>Update
                                     </button>
                                     <button
-                                        onClick={() => onClickDeletePackCallback(item.id)}>Delete
+                                        onClick={() => DeleteCallback(el.id)}>Delete
                                     </button>
-                                    { props.isLinkToCards && <NavLink onClick={ () => onClickPackIdCallback(item.id)} to = {PATH.CARDS}>Cards</NavLink> }
-
+                                    {props.isLinkToCards && <NavLink
+                                        onClick={() => PackIdCallback(el.id)} to={PATH.CARDS}>Cards
+                                    </NavLink>}
                                 </>}
                         </td>
                     </tr>
@@ -77,4 +56,14 @@ export const Table: React.FC<PropsType> = (props: PropsType) => {
             </tbody>
         </table>
     )
+}
+
+//types:
+type PropsType = {
+    header: any
+    data: any
+    update: (id: string) => void
+    delete: (id: string) => void
+    isLinkToCards: boolean
+    link?: (packId: string) => void
 }
