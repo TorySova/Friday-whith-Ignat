@@ -9,9 +9,9 @@ export const Profile = () => {
     const isLoggedIn = useSelector<AppStoreType, boolean>(state => state.login.isLoggedIn)
     const name = useSelector<AppStoreType, string>(store => store.profile.user.name)
 
-    if (!isLoggedIn) {
+    if(!isLoggedIn){
         debugger
-        return <Redirect to={'/login'} />
+        return <Redirect to={'/login'}/>
     }
     return (
         <div>
