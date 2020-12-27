@@ -37,13 +37,13 @@ export const CheckIn = () => {
     return (
         <div>
             <div>
-                <p>введите почту:</p><SuperInput type={"text"} placeholder={"e-mail"} value={email} onChangeText={setEmail}/>
+                <div>введите почту:</div><SuperInput type={"text"} placeholder={"e-mail"} value={email} onChangeText={setEmail}/>
             </div>
             <div>
-                <p>введите пароль:</p><SuperInput type={"password"} placeholder={"password"} value={password} onChangeText={setPassword}/>
+                <div>введите пароль:</div><SuperInput type={"password"} placeholder={"password"} value={password} onChangeText={setPassword}/>
             </div>
             <div>
-                <p>подтвердите пароль:</p><SuperInput type={"password"} placeholder={"confirm the password"} value={confirmPassword} onChangeText={setConfirmPassword}/>
+                <div>подтвердите пароль:</div><SuperInput type={"password"} placeholder={"confirm the password"} value={confirmPassword} onChangeText={setConfirmPassword}/>
             </div>
             <button onClick={addNewUser}>Зарегистрироваться</button>
         </div>
