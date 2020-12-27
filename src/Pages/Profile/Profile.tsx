@@ -8,6 +8,7 @@ import { AppStoreType } from '../../redux/store'
 export const Profile = () => {
     const isLoggedIn = useSelector<AppStoreType, boolean>(state => state.login.isLoggedIn)
     const name = useSelector<AppStoreType, string>(store => store.profile.user.name)
+    const id = useSelector<AppStoreType, string>(store => store.profile.user._id)
 
     if(!isLoggedIn){
         debugger
@@ -19,7 +20,9 @@ export const Profile = () => {
             <div>
                 name: {name}
             </div>
-
+            <div>
+                id: {id}
+            </div>
         </div>
     )
 }
