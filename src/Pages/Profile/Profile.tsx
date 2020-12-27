@@ -6,13 +6,13 @@ import { AppStoreType } from '../../redux/store'
 
 
 export const Profile = () => {
-    // const isLoggedIn = useSelector<AppStoreType, boolean>(state => state.login.isLoggedIn)
+    const isLoggedIn = useSelector<AppStoreType, boolean>(state => state.login.isLoggedIn)
     const name = useSelector<AppStoreType, string>(store => store.profile.user.name)
 
-    // if(!isLoggedIn){
-    //     debugger
-    //     return <Redirect to={'/login'}/>
-    // }
+    if(!isLoggedIn){
+        debugger
+        return <Redirect to={'/login'}/>
+    }
     return (
         <div>
             Профайл
