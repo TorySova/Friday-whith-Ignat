@@ -19,7 +19,7 @@ export type ProfileStateType = {
 
 const initState: ProfileStateType = {
     user: {
-        _id: '0',
+        _id: '',
         email: '',
         name: 'test',
         avatar: '',

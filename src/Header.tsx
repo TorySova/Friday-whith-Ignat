@@ -21,6 +21,12 @@ export const Header = () => {
                 <NavLink to={PATH.RECOVER_PASSWORD}>Восстановить пароль</NavLink>
             </div>
             <div className="item">
+                <NavLink to={PATH.PACKS}>Калоды карточек</NavLink>
+            </div>
+            <div className="item">
+                <NavLink to={PATH.CARDS}>Карточки</NavLink>
+            </div>
+            <div className="item">
                 <NavLink to={PATH.TEST}>Test</NavLink>
             </div>
         </div>

@@ -5,13 +5,17 @@ import {profileReducer} from "./profileReducer";
 import { registerReducer } from "./registerReducer";
 import {forgotReducer} from "./forgotReducer";
 import {setPassReducer} from "./setPasswordReducer";
+import {packsReducer} from "./packsReducer";
+import { cardsReducer } from './cardsReducer';
 
 const reducers = combineReducers({
     profile: profileReducer,
     login: loginReducer,
     register: registerReducer,
     forgot: forgotReducer,
-    setPassword: setPassReducer
+    setPassword: setPassReducer,
+    packs: packsReducer,
+    cards: cardsReducer,
 
 });
 
