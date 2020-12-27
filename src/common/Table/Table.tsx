@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { PATH } from "../../Routes";
 
 export const Table: React.FC<PropsType> = (props: PropsType) => {
