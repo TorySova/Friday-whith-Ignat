@@ -21,6 +21,7 @@ export const Packs = () => {
 
     const packsData = useSelector((state: AppStoreType) => packs(state));
     const isLoggedIn = useSelector<AppStoreType, boolean>(state => state.login.isLoggedIn);
+    const isRequest = useSelector<AppStoreType, boolean>(state => state.packs.isRequest);
     const userId = useSelector<AppStoreType, string>(store => store.profile.user._id)
     const isLinkToCards = true;
     const dispatch = useDispatch();
@@ -57,9 +58,9 @@ export const Packs = () => {
     return (
         <div>
             {/* сделать дизейбл кнопок */}
-            <button onClick={getAllPacks}>GET ALL PACKS</button>
-            <button onClick={getMyPacks}>GET MY PACKS</button>
-            <button onClick={addNewPack}>CREATE NEW PACK</button>
+            <button onClick={getAllPacks} disabled={isRequest} >GET ALL PACKS</button>
+            <button onClick={getMyPacks} disabled={isRequest} >GET MY PACKS</button>
+            <button onClick={addNewPack} disabled={isRequest} >CREATE NEW PACK</button>
             <Table
                 header={packsData[0]}
                 data={packsData}

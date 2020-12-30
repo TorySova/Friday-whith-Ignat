@@ -24,6 +24,7 @@ const initialState: any = {
     page: 1,
     pageCount: 20,
     userId: null,
+    isRequest: false
 }
 
 type InitialStateType = typeof initialState;
@@ -36,6 +37,8 @@ export const packsReducer = (state: InitialStateType = initialState, action: Act
             return { ...state, packId: action.packId }
         case 'PACKS_REDUCER/SET_USER_ID':
             return { ...state, userId: action.userId }
+        case 'PACKS_REDUCER/IS-REQUEST-AC':
+            return { ...state, isRequest: action.isRequest }
         default:
             return state
     }
@@ -45,17 +48,20 @@ export const packsReducer = (state: InitialStateType = initialState, action: Act
 export const getPacksAC = (packs: any) => ({ type: 'PACKS_REDUCER/FETCH_PACKS', payload: packs } as const);
 export const packIdAC = (packId: any) => ({ type: 'PACKS_REDUCER/SET_PACK_LINK', packId } as const)
 export const setUserId = (userId: any) => ({ type: 'PACKS_REDUCER/SET_USER_ID', userId } as const)
+const isRequestAC = (isRequest: boolean) => ({type: 'PACKS_REDUCER/IS-REQUEST-AC', isRequest} as const);
 
 // thunks
 export const getPacksThunk = () => (dispatch: any, getState: any) => {
     const page = getState().packs.page;
     const pageCount = getState().packs.pageCount;
     const user_id = getState().packs.userId;
+    dispatch(isRequestAC(true))
     //добавить крутилку + дисейбл кнопки (не забыть убрать!)
     PacksAPI.getPacks(user_id, page, pageCount)
         .then(response => {
             console.log(response)
             dispatch(getPacksAC(response.cardPacks))
+            dispatch(isRequestAC(false))
         })
         .catch((e) => {
             //сделать какой-нибудь popup для ошибок
@@ -125,3 +131,4 @@ type ActionsType =
     | ReturnType<typeof getPacksAC>
     | ReturnType<typeof packIdAC>
     | ReturnType<typeof setUserId>
+    | ReturnType<typeof isRequestAC>

@@ -24,6 +24,7 @@ export const Cards = () => {
 
     const isLoggedIn = useSelector<AppStoreType, boolean>(state => state.login.isLoggedIn);
     const cardsData = useSelector((state: AppStoreType) => getCardsData(state));
+    const isRequest = useSelector<AppStoreType, boolean>(state => state.packs.isRequest);
     const isLinkToCards = false;
 
     const getCards = () => {
@@ -46,8 +47,8 @@ export const Cards = () => {
     return (
         <div>
             {/* сделать дизейбл кнопок */}
-            <button onClick={getCards}>GET CARDS</button>
-            <button onClick={addCard}>ADD CARD</button>
+            <button onClick={getCards} disabled={isRequest} >GET CARDS</button>
+            <button onClick={addCard} disabled={isRequest} >ADD CARD</button>
             <Table
                 header={cardsData[0]}
                 data={cardsData}
