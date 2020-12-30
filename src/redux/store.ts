@@ -7,6 +7,7 @@ import {forgotReducer} from "./forgotReducer";
 import {setPassReducer} from "./setPasswordReducer";
 import {packsReducer} from "./packsReducer";
 import { cardsReducer } from './cardsReducer';
+import {searchReducer} from "./searchReducer";
 
 const reducers = combineReducers({
     profile: profileReducer,
@@ -16,6 +17,7 @@ const reducers = combineReducers({
     setPassword: setPassReducer,
     packs: packsReducer,
     cards: cardsReducer,
+    search: searchReducer
 
 });
 

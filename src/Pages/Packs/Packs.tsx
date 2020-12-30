@@ -1,11 +1,21 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import { Table } from "../../common/Table/Table";
+import {Table} from "../../common/Table/Table";
 import {AppStoreType} from "../../redux/store";
-import {createPackThunk, deletePackThunk, getPacksThunk, packIdAC, setUserId, updatePackThunk} from "../../redux/packsReducer";
+import {
+    createPackThunk,
+    deletePackThunk,
+    getPacksThunk,
+    packIdAC,
+    setCurrentPageAC,
+    setPageCountAC,
+    setUserId,
+    updatePackThunk
+} from "../../redux/packsReducer";
 import {Redirect} from "react-router-dom";
 import {PATH} from "../../Routes";
-import { getCardsThunk } from "../../redux/cardsReducer";
+import {getCardsThunk} from "../../redux/cardsReducer";
+import {Pagination} from "@material-ui/lab";
 
 export const Packs = () => {
 
@@ -28,7 +38,7 @@ export const Packs = () => {
     React.useEffect(() => {
         dispatch(setUserId(null))
         dispatch(getPacksThunk())
-    }, [])
+    }, [dispatch])
 
     const getMyPacks = () => {
         dispatch(setUserId(userId))
@@ -51,7 +61,16 @@ export const Packs = () => {
         dispatch(packIdAC(packId))
         dispatch(getCardsThunk())
     }
-    
+
+    const page = useSelector((state: AppStoreType) => state.packs.currentPage);
+    const totalCount = useSelector((state: AppStoreType) => state.packs.totalCount);
+    const rowsPerPage = useSelector((state: AppStoreType) => state.packs.pageCount);
+
+    const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+        dispatch(setCurrentPageAC(value))
+        dispatch(getPacksThunk())
+    };
+
     if (!isLoggedIn) return <Redirect to={PATH.LOGIN}/>
 
     return (
@@ -68,6 +87,15 @@ export const Packs = () => {
                 isLinkToCards={isLinkToCards}
                 link={linkToCards}
             />
+            <div>
+                <Pagination count={Math.ceil(totalCount / rowsPerPage)}
+                            defaultPage={page}
+                            boundaryCount={2}
+                            onChange={handleChange}
+                            showFirstButton={page !== 1}
+                            showLastButton/>
+            </div>
+
         </div>
     )
 }
