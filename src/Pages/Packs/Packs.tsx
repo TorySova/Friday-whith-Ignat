@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Table} from "../../common/Table/Table";
 import {AppStoreType} from "../../redux/store";
@@ -8,7 +8,6 @@ import {
     getPacksThunk,
     packIdAC,
     setCurrentPageAC,
-    setPageCountAC,
     setUserId,
     updatePackThunk
 } from "../../redux/packsReducer";
@@ -16,6 +15,9 @@ import {Redirect} from "react-router-dom";
 import {PATH} from "../../Routes";
 import {getCardsThunk} from "../../redux/cardsReducer";
 import {Pagination} from "@material-ui/lab";
+import {searchAC} from "../../redux/searchReducer";
+import SuperInput from "../../SuperComponent/SuperInput/SuperInput";
+import CardsSearchCountDoubleRange from "../../common/Search/CardsSearchCountDoubleRange";
 
 export const Packs = () => {
 
@@ -61,7 +63,7 @@ export const Packs = () => {
         dispatch(packIdAC(packId))
         dispatch(getCardsThunk())
     }
-
+    //Pagination
     const page = useSelector((state: AppStoreType) => state.packs.currentPage);
     const totalCount = useSelector((state: AppStoreType) => state.packs.totalCount);
     const rowsPerPage = useSelector((state: AppStoreType) => state.packs.pageCount);
@@ -70,11 +72,27 @@ export const Packs = () => {
         dispatch(setCurrentPageAC(value))
         dispatch(getPacksThunk())
     };
+    //Search
+    const onChangeSearch = (text: string) => {
+        dispatch(searchAC(text))
+    }
+    const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
+        // onChange && onChange(e)
+        onChangeSearch && onChangeSearch(e.currentTarget.value)
+    }
+    const onSearch = () => {
+        dispatch(getPacksThunk())
+    }
 
     if (!isLoggedIn) return <Redirect to={PATH.LOGIN}/>
 
     return (
         <div>
+            <CardsSearchCountDoubleRange/>
+            <div>
+                <SuperInput onChange={onChangeCallback} placeholder={'Search cards pack name...'}/>
+                <button onClick={onSearch}>Search</button>
+            </div>
             {/* сделать дизейбл кнопок */}
             <button onClick={getAllPacks}>GET ALL PACKS</button>
             <button onClick={getMyPacks}>GET MY PACKS</button>
@@ -95,7 +113,6 @@ export const Packs = () => {
                             showFirstButton={page !== 1}
                             showLastButton/>
             </div>
-
         </div>
     )
 }
