@@ -33,7 +33,7 @@ export const SnackBar = () => {
                 <Snackbar open={openSuccess} autoHideDuration={4000} onClose={handleClose}>
                     <Alert onClose={handleClose} severity="success">
                         This is a success message!
-                </Alert>
+                    </Alert>
                 </Snackbar>
             </div>
             <div className={s.item}>
@@ -43,17 +43,17 @@ export const SnackBar = () => {
                 <Snackbar open={openError} autoHideDuration={4000} onClose={handleClose}>
                     <Alert onClose={handleClose} severity="error">
                         This is a error message!
-                </Alert>
+                    </Alert>
                 </Snackbar>
             </div>
             <div className={s.item}>
                 <Button variant="outlined" color="primary" onClick={() => setOpenMessage(true)}>
                     Show message modal
-                </Button>
+                    </Button>
                 <Snackbar open={openMessage} autoHideDuration={4000} onClose={handleClose}>
                     <Alert onClose={handleClose} severity="info">
-                        This is message!
-                </Alert>
+                        This is simple message!
+                    </Alert>
                 </Snackbar>
             </div>
 
