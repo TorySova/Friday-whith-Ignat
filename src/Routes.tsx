@@ -10,6 +10,7 @@ import { RecoverPassword } from './Pages/RecoverPassword/RecoverPassword'
 import { Test } from './Pages/Test/Test'
 import {Cards} from "./Pages/Cards/Cards";
 import { Modals } from './Pages/modals/Modals'
+import {Learn} from "./Pages/Learning/Learn";
 
 export const PATH = {
     CHECK_IN: "/check-in",
@@ -20,7 +21,8 @@ export const PATH = {
     PACKS: "/packs",
     CARDS: "/cards",
     TEST: "/test",
-    MODALS: "/modals"
+    MODALS: "/modals",
+    LEARN: "/learn"
 }
 
 export const Routes = () => {
@@ -37,6 +39,7 @@ export const Routes = () => {
                 <Route path={PATH.CARDS} render={() => <Cards />} />
                 <Route path={PATH.TEST} render={() => <Test />} />
                 <Route path={PATH.MODALS} render={() => <Modals />} />
+                <Route path={PATH.LEARN} render={() => <Learn />} />
 
                 <Route render={() => <Error404 />} />
             </Switch>

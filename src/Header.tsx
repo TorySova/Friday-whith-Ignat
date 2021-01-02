@@ -32,6 +32,9 @@ export const Header = () => {
             <div className="item">
                 <NavLink to={PATH.MODALS}>Modals</NavLink>
             </div>
+            <div className="item">
+                <NavLink to={PATH.LEARN}>Learn</NavLink>
+            </div>
         </div>
     )
 }

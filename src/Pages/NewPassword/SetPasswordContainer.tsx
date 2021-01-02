@@ -1,11 +1,10 @@
 import React, {useCallback, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {AppStoreType} from "../../redux/store";
-import {Redirect, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {setPasswordTC} from "../../redux/setPasswordReducer";
 import Preloader from "../../common/Preloader";
 import SetPassword from "./SetPassword";
-import {PATH} from "../../Routes";
 
 const SetPasswordContainer = React.memo(() => {
         const [pass, setPass] = useState<string>("");
