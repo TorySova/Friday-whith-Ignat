@@ -60,6 +60,9 @@ export const SnackBar = () => {
                     This is message!
                 </Alert>
             </Snackbar> */}
+            <Button variant="outlined" color="primary" onClick={handleClick}>
+                Show error modal
+            </Button>
         </div>
     );
 }
