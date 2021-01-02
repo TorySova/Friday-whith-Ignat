@@ -1,8 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { AppStoreType } from "../../redux/store";
 import { PATH } from "../../Routes";
 
 export const Table: React.FC<PropsType> = (props: PropsType) => {
+    
+    const isRequest = useSelector<AppStoreType, boolean>(state => state.packs.isRequest);
 
     //callbacks:
     const UpdateCallback = (id: string) => {
@@ -41,13 +45,13 @@ export const Table: React.FC<PropsType> = (props: PropsType) => {
                             {!!props.data
                                 && <>
                                     <button
-                                        onClick={() => UpdateCallback(el.id)}>Update
+                                        onClick={() => UpdateCallback(el.id)} disabled={isRequest} >Update
                                     </button>
                                     <button
-                                        onClick={() => DeleteCallback(el.id)}>Delete
+                                        onClick={() => DeleteCallback(el.id)} disabled={isRequest} >Delete
                                     </button>
                                     {props.isLinkToCards && <NavLink
-                                        onClick={() => PackIdCallback(el.id)} to={PATH.CARDS}>Cards
+                                        onClick={() => PackIdCallback(el.id)} to={PATH.CARDS} >Cards
                                     </NavLink>}
                                 </>}
                         </td>

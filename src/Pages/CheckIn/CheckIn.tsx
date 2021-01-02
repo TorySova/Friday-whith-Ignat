@@ -6,16 +6,16 @@ import { Redirect } from 'react-router-dom';
 import {registerNewUserTC} from "../../redux/registerReducer";
 import {PATH} from "../../Routes";
 
-
 export const CheckIn = () => {
 
     const [email, setEmail] = React.useState<string>("");
     const [password, setPassword] = React.useState<string>("");
     const [confirmPassword, setConfirmPassword] = React.useState<string>("");
 
-    const dispatch = useDispatch();
-
     const isRegistered = useSelector<AppStoreType, boolean>(state => state.register.isRegistered);
+    const isRequest = useSelector<AppStoreType, boolean>(state => state.register.isRequest);
+
+    const dispatch = useDispatch();
 
     const addNewUser = () => {
         if (password.length < 7) {
@@ -45,7 +45,7 @@ export const CheckIn = () => {
             <div>
                 <div>подтвердите пароль:</div><SuperInput type={"password"} placeholder={"confirm the password"} value={confirmPassword} onChangeText={setConfirmPassword}/>
             </div>
-            <button onClick={addNewUser}>Зарегистрироваться</button>
+            <button onClick={addNewUser} disabled={isRequest}>Зарегистрироваться</button>
         </div>
     )
 }

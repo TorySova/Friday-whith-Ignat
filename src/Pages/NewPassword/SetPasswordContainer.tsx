@@ -1,20 +1,22 @@
 import React, {useCallback, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {AppStoreType} from "../../redux/store";
-import {useParams} from "react-router-dom";
+import {Redirect, useParams} from "react-router-dom";
 import {setPasswordTC} from "../../redux/setPasswordReducer";
 import Preloader from "../../common/Preloader";
 import SetPassword from "./SetPassword";
+import {PATH} from "../../Routes";
 
 const SetPasswordContainer = React.memo(() => {
         const [pass, setPass] = useState<string>("");
         const [pass2, setPass2] = useState<string>("");
         const {token}: any = useParams();
+        const success = useSelector((state: AppStoreType) => state.setPassword.success )
 
         const dispatch = useDispatch();
         const setPassCallback = useCallback(
             () => dispatch(setPasswordTC(token, pass, pass2)),
-            [pass, pass2, dispatch]
+            [pass, pass2, token, dispatch]
         );
         const {loading, error} = useSelector((store: AppStoreType) => store.setPassword);
         return (
@@ -26,6 +28,7 @@ const SetPasswordContainer = React.memo(() => {
                     setPassCallback={setPassCallback}
                     loading={loading}
                     error={error}
+                    success={success}
                 />
             </>
         );

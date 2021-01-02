@@ -1,0 +1,11 @@
+.modals{
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+.item{
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+}
