@@ -10,24 +10,10 @@ function Alert(props: AlertProps) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-// const useStyles = makeStyles((theme: Theme) => ({
-//     root: {
-//         width: '100%',
-//         '& > * + *': {
-//             marginTop: theme.spacing(2),
-//         },
-//     },
-// }));
-
 export const SnackBar = () => {
-    // const classes = useStyles();
     const [openSuccess, setOpenSuccess] = React.useState(false);
     const [openError, setOpenError] = React.useState(false);
     const [openMessage, setOpenMessage] = React.useState(false);
-
-    // const handleClick = () => {
-    //     setOpen(true);
-    // };
 
     const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
         if (reason === 'clickaway') {
