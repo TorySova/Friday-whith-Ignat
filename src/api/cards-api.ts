@@ -1,10 +1,5 @@
-import axios from "axios";
+import { instance } from "./instance"
 
-const instance = axios.create({
-    baseURL: "http://localhost:7542/2.0/",
-    withCredentials: true
-    //baseURL: "https://neko-back.herokuapp.com/2.0/"
-});
 
 export const CardsAPI = {
     getCards(cardsPack_id: any, page: any, pageCount: any) {

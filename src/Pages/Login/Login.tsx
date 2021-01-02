@@ -39,10 +39,10 @@ export const Login = () => {
     return (
         <div>
             {error ? <div className={s.error}>{error}</div> : ''}
-            <p>введите почту:</p><SuperInput type={'text'} placeholder={'email'} value={email} onChange={setEmailCallback}/>
-            <p>введите пароль:</p><SuperInput type={'password'} placeholder={'password'} value={password} onChange={setPassCallback}/>
-            <p><input type={'checkbox'} checked={rememberMe} onChange={setRememberCallback}/> remember me</p>
-            <p><button onClick={loggInCallback}>login</button></p>
+            <div>введите почту:</div><SuperInput type={'text'} placeholder={'email'} value={email} onChange={setEmailCallback}/>
+            <div>введите пароль:</div><SuperInput type={'password'} placeholder={'password'} value={password} onChange={setPassCallback}/>
+            <div><input type={'checkbox'} checked={rememberMe} onChange={setRememberCallback}/> remember me</div>
+            <div><button onClick={loggInCallback}>login</button></div>
         </div>
     )
 }
