@@ -16,7 +16,6 @@ export const ForgotInitState: ForgotStateType = {
 export const forgotReducer = (state = ForgotInitState, action: ForgotActionsType): ForgotStateType => {
     switch (action.type) {
         case "forgot/SET_ERROR": {
-            debugger
             return {
                 ...state,
                 error: action.error

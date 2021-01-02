@@ -11,12 +11,14 @@ type SetPassPropsType = {
     setPassCallback: () => void
     loading: boolean
     error: string
+    success: boolean
 };
 
 const SetPassword: React.FC<SetPassPropsType> = React.memo((
-    {pass, setPass, pass2, setPass2, setPassCallback, loading, error}) => {
+    {pass, setPass, pass2, setPass2, setPassCallback, loading, error, success}) => {
     return (
         <>
+            {success && <div>Password was changed</div> }
             {error && <div className={s.error}>{error}</div>}
             <div><SuperInput value={pass} onChangeText={setPass}/></div>
             <div><SuperInput value={pass2} onChangeText={setPass2}/></div>

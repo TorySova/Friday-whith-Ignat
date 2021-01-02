@@ -1,9 +1,27 @@
 import { instance } from "./instance";
+import {PackType} from "../redux/packsReducer";
 
+export type ResponseGetPacksType = {
+    cardPacks: Array<PackType>
+    cardPacksTotalCount: number | null
+    maxCardsCount: number | null
+    minCardsCount: number | null
+    page: number | null
+    pageCount: number | null
+}
 
 export const PacksAPI = {
-    getPacks(user_id: string, page: number, pageCount: number) {
-        return instance.get(`cards/pack/?`+ (user_id != null ? `user_id=${user_id}` : ``) + `&page=${page}` + `&pageCount=${pageCount}`).then(res => res.data)
+    getPacks(params: any) {
+        return instance.get<ResponseGetPacksType>(`/cards/pack`
+            + (params.userId != null ? `/?user_id=${params.userId}&` : '/?')
+            + (params.packName != null ? `packName=${params.packName}&` : '')
+            + (params.min != null ? `min=${params.min}&` : '')
+            + (params.max != null ? `max=${params.max}&` : '')
+            + (params.sortPacks != null ? `sortPacks=${params.sortPacks}&` : '')
+            + (params.page != null ? `page=${params.page}&` : '')
+            + (params.pageCount != null ? `pageCount=${params.pageCount}&` : '')
+        )
+            .then(res => res.data)
     },
     createPack() {
         return instance.post('cards/pack', {
